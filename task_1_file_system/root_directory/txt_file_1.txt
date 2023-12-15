@@ -1,0 +1,3 @@
+some another text
+
+require './another_directory_2/internal_directory/text_4.txt'

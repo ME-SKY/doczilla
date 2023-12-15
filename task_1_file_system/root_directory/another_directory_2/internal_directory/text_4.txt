@@ -1,0 +1,3 @@
+text_4_content
+
+require '../../another_directory/some_txt.txt'

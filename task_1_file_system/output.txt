@@ -1,0 +1,34 @@
+
+
+
+
+
+
+
+
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id enim euismod erat elementum cursus. In hac habitasse platea dictumst. Etiam vitae tortor ipsum. Morbi massa augue, lacinia sed nisl id, congue eleifend lorem.
+
+require './b.txt'
+
+Praesent feugiat egestas sem, id luctus lectus dignissim ac. Donec elementum rhoncus quam, vitae viverra massa euismod a. Morbi dictum sapien sed porta tristique. Donec varius convallis quam in fringilla.
+
+
+asdfasdfasdfavad
+
+Some text oh my god oh my god
+
+require './dir_1/a.txt'
+require './dir_1/b.txt'
+
+text_4_content
+
+require '../../another_directory/some_txt.txt'
+
+
+
+some another text
+
+require './another_directory_2/internal_directory/text_4.txt'
+

@@ -1,0 +1,4 @@
+Some text oh my god oh my god
+
+require './dir_1/a.txt'
+require './dir_1/b.txt'

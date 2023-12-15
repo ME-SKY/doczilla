@@ -1,0 +1,11 @@
+b.txt
+a.txt
+  Requires: b.txt
+some_txt.txt
+  Requires: b.txt
+  Requires: a.txt
+txt_file_1.txt
+  Requires: text_4.txt
+text_4.txt
+  Requires: some_txt.txt
+text_3.txt
