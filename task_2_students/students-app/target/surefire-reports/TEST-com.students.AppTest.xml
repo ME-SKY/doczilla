@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.students.AppTest" time="0.022" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.students.AppTest" time="0.023" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -7,7 +7,7 @@
     <property name="java.specification.version" value="1.8"/>
     <property name="sun.cpu.isalist" value=""/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/superman/projects/doczilla/task_2_students/students-app/target/test-classes:/Users/superman/projects/doczilla/task_2_students/students-app/target/classes:/Users/superman/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/superman/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.class.path" value="/Users/superman/projects/doczilla/task_2_students/students-app/target/test-classes:/Users/superman/projects/doczilla/task_2_students/students-app/target/classes:/Users/superman/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/superman/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/superman/.m2/repository/org/postgresql/postgresql/42.2.24/postgresql-42.2.24.jar:/Users/superman/.m2/repository/org/checkerframework/checker-qual/3.5.0/checker-qual-3.5.0.jar:/Users/superman/.m2/repository/org/json/json/20231013/json-20231013.jar:"/>
     <property name="java.vm.vendor" value="AdoptOpenJDK"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
@@ -17,9 +17,9 @@
     <property name="user.country" value="GB"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib"/>
-    <property name="sun.java.command" value="/Users/superman/projects/doczilla/task_2_students/students-app/target/surefire/surefirebooter650492952057428204.jar /Users/superman/projects/doczilla/task_2_students/students-app/target/surefire 2023-12-16T20-57-57_826-jvmRun1 surefire2865925277395304042tmp surefire_02382020141116311657tmp"/>
+    <property name="sun.java.command" value="/Users/superman/projects/doczilla/task_2_students/students-app/target/surefire/surefirebooter3259607984621152315.jar /Users/superman/projects/doczilla/task_2_students/students-app/target/surefire 2023-12-19T01-06-55_500-jvmRun1 surefire1850785115265024624tmp surefire_01595207040870551084tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="surefire.test.class.path" value="/Users/superman/projects/doczilla/task_2_students/students-app/target/test-classes:/Users/superman/projects/doczilla/task_2_students/students-app/target/classes:/Users/superman/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/superman/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="surefire.test.class.path" value="/Users/superman/projects/doczilla/task_2_students/students-app/target/test-classes:/Users/superman/projects/doczilla/task_2_students/students-app/target/classes:/Users/superman/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/superman/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/superman/.m2/repository/org/postgresql/postgresql/42.2.24/postgresql-42.2.24.jar:/Users/superman/.m2/repository/org/checkerframework/checker-qual/3.5.0/checker-qual-3.5.0.jar:/Users/superman/.m2/repository/org/json/json/20231013/json-20231013.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/Users/superman"/>
     <property name="user.language" value="en"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/superman/projects/doczilla/task_2_students/students-app/target/surefire/surefirebooter650492952057428204.jar"/>
+    <property name="surefire.real.class.path" value="/Users/superman/projects/doczilla/task_2_students/students-app/target/surefire/surefirebooter3259607984621152315.jar"/>
     <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>

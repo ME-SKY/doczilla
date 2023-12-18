@@ -1,3 +1,4 @@
 com/students/App.class
 com/students/App$StudentsHandler.class
+com/students/HttpMethod.class
 com/students/App$RootHandler.class

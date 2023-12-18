@@ -1,15 +1,548 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Simple Frontend</title>
-    <!-- Add any necessary CSS stylesheets here -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* body {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        } */
+
+        .app {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 2%;
+            margin: 0;
+            min-width: 100vw;
+            min-height: 100vh;
+            background: rgb(93 72 93);
+        }
+
+        .status-message {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+        }
+
+        .modal {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            /* other modal styles */
+        }
+
+        .modal.active {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.485);
+            backdrop-filter: blur(3px);
+            /* Darkened background */
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            /* Ensures the modal appears on top */
+        }
+
+        /* .modal-content {
+            background: #8e7e9f;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            min-width: 324px;
+        } */
+
+        .modal-content {
+            min-width: 35%;
+            border: 1px solid rgb(136 120 120);
+            position: relative;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            row-gap: 12px;
+            background: rgb(68 49 67);
+            /* Match the color scheme */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: rgb(190 167 230);
+        }
+
+        .modal-content label {
+            display: block;
+            margin: 5px 5px 5px 5px;
+        }
+
+        .modal-content label {
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            pointer-events: none;
+            font-weight: bold;
+        }
+
+        .modal-title {
+            text-align: center;
+        }
+
+        /* .field:hover label:hover, input */
+
+        .modal-content input[type="text"],
+        .modal-content input[type="date"] {
+            display: block;
+            margin-bottom: 0;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            background-color: rgb(42 28 50);
+            color: rgb(190 167 230);
+            width: 80%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .modal-content button.create-student {
+            margin-top: 5px;
+            box-shadow: 0px 0px 3px 1px #94b8e1;
+            opacity: 1;
+            padding: 8px 20px;
+            background-color: rgb(57 51 89);
+            border-radius: 5px;
+            border: 1px solid transparent;
+            color: rgb(190 167 230);
+            outline: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+
+        .modal-content button.create-student:hover {
+            filter: brightness(1.2) contrast(1);
+            border: 0.5px solid rgb(229 255 0);
+        }
+
+        button.create-student:disabled {
+            filter: brightness(0.8);
+            box-shadow: 0px 0px 3px 1px #565c63;
+        }
+
+        .show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2s;
+            animation: fadein 0.5s, fadeout 0.5s 2s;
+        }
+
+        .students {
+            border: 1px solid rgb(136 120 120);
+            display: flex;
+            flex-flow: column nowrap;
+            box-shadow: 1px 1px 4px 1px #141215;
+            background: rgb(42 28 50);
+            border-radius: 6px;
+            list-style-type: none;
+            padding: 14px;
+            /* background: radial-gradient(circle, rgba(64,8,22,1) 0%, rgba(70,28,38,1) 76%, rgba(27,10,50,1) 100%); */
+        }
+
+        .students>.title {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: antiquewhite;
+        }
+
+        #students-list {
+            display: flex;
+            flex-flow: column nowrap;
+            row-gap: 10px;
+        }
+
+        button.add-student {
+            box-shadow: 0px 0px 3px 1px #94b8e1;
+            margin: 20px auto auto auto;
+            padding: 4px 10px 4px 10px;
+            background: rgb(57 51 89);
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid transparent;
+            color: rgb(190 167 230);
+            min-height: 38px;
+        }
+
+        button.add-student:hover {
+            filter: brightness(1.2) contrast(1);
+            border: 0.5px solid rgb(229 255 0);
+        }
+
+        .students li {
+            display: flex;
+            flex-flow: row nowrap;
+            background: rgb(68 49 67);
+            color: rgb(190 167 230);
+            list-style-type: none;
+            cursor: pointer;
+            padding: 10px;
+            margin: 0;
+            box-shadow: 0px 0px 2px 1px rgb(115 88 88);
+            border: 1px solid transparent;
+            /* background: ; */
+            /* background-color: #f0f0f0; */
+            border-radius: 5px;
+        }
+
+        span.close-btn {
+            border: 0.5px solid transparent;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 0px 3px 1px #94b8e1;
+            pointer-events: none;
+            opacity: 0;
+            margin-left: auto;
+            width: 21px;
+            height: 21px;
+        }
+
+        span.close-btn:hover {
+            border: 0.5px solid rgb(229 255 0);
+            filter: brightness(1.2);
+
+        }
+
+        .students li:hover span.close-btn {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .students li:hover {
+            filter: brightness(1.15);
+            border: 1px solid rgb(136 120 120);
+        }
+
+        .students li.selected {
+            background-color: #ccc;
+        }
+
+        .field {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            box-shadow: 0px 0px 2px 1px rgb(115 88 88);
+            border: 1px solid transparent;
+        }
+
+        .field:hover {
+            border: 1px solid rgb(136 120 120);
+        }
+
+        .field input {
+            width: 80%;
+            outline: none;
+        }
+
+        .field input:active {
+            outline: none;
+        }
+
+        .field:hover input {
+            border: 1px solid transparent;
+        }
+
+        .field:hover input:hover {
+            border: 1px solid rgb(136 120 120);
+            box-shadow: 0px 0px 2px 1px rgb(115 88 88);
+        }
+
+
+
+        span.close-btn.close-modal {
+            box-shadow: 0px 0px 3px 1px #94b8e1;
+            /* border: 0.5px solid transparent; */
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            transform: scale(1.18);
+            align-items: center;
+            cursor: pointer;
+            pointer-events: all;
+            opacity: 1;
+        }
+
+        span.close-btn.close-modal:hover {
+            border: 0.5px solid rgb(229 255 0);
+            filter: brightness(1.2);
+        }
+
+        #create-student-form {
+            width: 90%;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            row-gap: 8px;
+        }
+
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Hello from the Frontend!</h1>
-    
-    <!-- Your HTML content and JavaScript here -->
-    
-    <script src="app.js"></script> <!-- Reference your JavaScript file -->
+    <div class="app">
+        <div class="students">
+            <div class="title">
+                <h3>STUDENTS</h3>
+            </div>
+            <ul id="students-list">
+            </ul>
+            <button class="add-student" id="add-student" onclick="openStudentForm()">Add Student</button>
+        </div>
+
+        <div id="student-creation-modal" class="modal">
+            <div class="modal-content">
+                <h4 class="modal-title">NEW STUDENT</h4>
+                <span class="close-btn close-modal" onclick="closeModal()">✖</span>
+                <form id="create-student-form" onsubmit="submitStudentForm(event)">
+                    <div class="field">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="type name">
+                    </div>
+                    <div class="field">
+                        <label for="second_name">Second Name:</label>
+                        <input type="text" id="second_name" name="second_name" placeholder="type second name">
+                    </div>
+                    <div class="field">
+                        <label for="surname">Surname:</label>
+                        <input type="text" id="surname" name="surname" placeholder="type surname">
+                    </div>
+                    <div class="field">
+                        <label for="date_of_birth">Date of Birth:</label>
+                        <input type="date" id="date_of_birth" name="date_of_birth" placeholder="choose date">
+                    </div>
+                    <div class="field">
+                        <label for="group_name">Group Name:</label>
+                        <input type="text" id="group_name" name="group_name" placeholder="type group name">
+                    </div>
+                    <button type="submit" class="create-student">Create Student</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="snackbar" class="status-message">
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            document.addEventListener('click', outsideClick);
+            getStudents()
+                .then(students => renderStudents(students));
+        };
+
+        function getStudents() {
+            return fetch('/students')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        function renderStudents(students) {
+            const studentsList = document.getElementById('students-list');
+
+            while (studentsList.firstChild) {
+                studentsList.removeChild(studentsList.firstChild);
+            }
+
+            (studentsList && students.length) && students.forEach(student => {
+                const listItem = document.createElement('li');
+                const closeButton = document.createElement('span');
+                closeButton.textContent = '✖';
+                closeButton.onclick = function () {
+                    removeStudent(student.id).then(result => result.ok && studentsList.removeChild(listItem));
+                };
+                closeButton.classList.add('close-btn');
+
+                const studentInfo = document.createElement('span');
+                studentInfo.textContent = `ID: ${student.id}, Name: ${student.name}, Second Name: ${student.second_name}, Surname: ${student.surname}, Date of Birth: ${student.date_of_birth}, Group Name: ${student.group_name}`;
+                listItem.appendChild(studentInfo);
+                listItem.appendChild(closeButton);
+
+                studentsList.appendChild(listItem);
+            });
+        }
+
+        function outsideClick(event) {
+            const appDiv = document.querySelector('.app');
+            const clickedElement = event.target;
+
+            if (!clickedElement.closest('ul')) {
+                const selectedElements = document.querySelectorAll('.selected');
+                selectedElements.forEach(element => {
+                    element.classList.remove('selected');
+                });
+            }
+        }
+
+        function removeStudent(id) {
+            return fetch(`/students/${id}`, {
+                method: 'DELETE',
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        function openStudentForm() {
+            const modal = document.getElementById('student-creation-modal');
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('student-creation-modal');
+            modal.classList.remove('active');
+        }
+
+        function createStudent(data) {
+            return fetch('/students', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: data,
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        function submitStudentForm(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const secondName = document.getElementById('second_name').value;
+            const surname = document.getElementById('surname').value;
+            const dateOfBirth = document.getElementById('date_of_birth').value;
+            const groupName = document.getElementById('group_name').value;
+
+            const studentInfo = {
+                name,
+                second_name: secondName,
+                surname,
+                date_of_birth: dateOfBirth,
+                group_name: groupName
+            };
+
+            console.log("studentsInfo, ", studentInfo)
+
+            createStudent(JSON.stringify(studentInfo)).then(res => {
+                if (res.ok) {
+                    getStudents().then(students => {
+                        renderStudents(students);
+                        closeModal();
+                    });
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>
