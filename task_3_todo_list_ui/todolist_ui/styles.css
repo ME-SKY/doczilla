@@ -1,0 +1,324 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* styles.css */
+
+/* Apply box-sizing to all elements */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #ffdfcf;
+}
+
+.first-color { 
+	background: #f8b595; 
+}
+	
+.second-color { 
+	background: #f67280; 
+}
+
+.third-color { 
+	background: #c06c84; 
+}
+
+.fourth-color { 
+	background: #6c5b7c; 
+}
+
+.app {
+    background: #6c5b7c; 
+    height: 100vh;
+    width: 100vw;
+    padding: 4%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: start;
+    justify-content: center;
+    gap: 26px;
+    align-content: flex-start;
+}
+
+.search {
+    flex: 1 0 100%;
+    height: 60px;
+    /* width: 35%; */
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+.modal {
+    display: none;
+    /* Additional styles as needed for modal */
+}
+
+.calendar {
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar,
+.todos {
+    display: flex;
+    flex-direction: column;
+}
+
+.todos {
+    flex: 0 0 calc(70% - 13px);
+    /* Set width to 70% of the available width in the row */
+}
+
+.calendar {
+    box-shadow: 0px 0px 2px 2px rgb(167 156 219);
+    background: #c06c84;
+    padding: 22px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    flex: 0 0 calc(30% - 13px);
+    row-gap: 14px;
+    /* Set width to 30% of the available width in the row */
+}
+
+/* Additional styling for calendar days */
+.calendar-entity {
+    
+    /* border: 1px solid #ccc; */
+    /* padding: 10px; */
+}
+
+.calendar-entity > .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.todos > .header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+/* .calendar-entity .header > .month-btn, 
+.calendar-entity .header > .year-btn {
+    
+} */
+.month-btn,
+.year-btn {
+    box-shadow: 0px 0px 2px 2px rgba(166, 156, 219, 0);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    /* padding: 8px 12px; */
+    cursor: pointer;
+    border: 0.5px solid #ffc1c1;
+    border-radius: 10px;
+    background-color: #e29099;
+    height: 40px;
+    transition: box-shadow 0.7s ease;
+    /* color: #f8b595; */
+}
+
+.month-btn {
+    /* border-right-color: antiquewhite; */
+    /* border-radius: 10px 0 0 10px; */
+    width: calc(68% - 5px);
+}
+
+.month-btn:hover, .year-btn:hover {
+    filter: brightness(1.05);
+    border: 0.5px solid #cee5a8;
+    /* text-shadow: 1px 1px 2px #731c4d; */
+    box-shadow: 0px 0px 5px 2px rgba(209, 155, 201, 0.65);
+    /* background: #b47575; */
+}
+
+.month-btn .selected-month {
+    transition: text-shadow 0.7s ease;
+    text-shadow: 0px 0px 5px #731c4d78;
+}
+
+.month-btn:hover .selected-month{
+    text-shadow: 1px 1px 3px #731c4d;
+}
+
+.year-btn {
+    /* border-radius: 0 10px 10px 0; */
+    width: calc(32% - 5px);
+}
+
+.set-prev-month, .set-next-month {
+    padding: 0;
+    font-weight: bolder;
+    color:  #ffc1c1;
+    cursor: pointer;
+    border: 0.5px solid #ffc1c1;
+    border-radius: 4px;
+    background-color: #e29099;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-body {
+    width: min-content;
+    /* border: 1px solid #ccc; */
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.calendar-entity .calendar-body .cell {
+    /* background: ; */
+    border: 0.5px solid #ffc1c1;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+}
+
+.calendar-entity .calendar-body .cell:hover {
+    filter: brightness(1.2);
+    border: 0.5px solid #cee5a8;
+    background: #b47575;
+}
+
+/* .day {
+    padding: 8px;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+} */
+
+.empty {
+    background-color: transparent;
+    border: 0.5px solid #ccc;
+    /* Adjust styling for empty cells if needed */
+}
+
+
+/* checkbox */
+/* Hide the default checkbox */
+.uncompleted-checkbox input {
+    opacity: 0;
+    position: absolute;
+  }
+  
+  /* Style for the custom checkbox container */
+  .uncompleted-checkbox {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px; /* Set space for the custom checkbox */
+    margin-right: 15px;
+    cursor: pointer;
+  }
+  
+  /* Style for the checkmark */
+  .uncompleted-checkbox .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border: 1px solid #999;
+  }
+  
+  /* Show the checkmark when the checkbox is checked */
+  .uncompleted-checkbox input:checked + .checkmark:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 5px;
+    top: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #000;
+  }
+
+
+  /* custom select  */
+
+  /* Styles for the custom select */
+/* Styles for the custom select */
+.custom-select-wrapper {
+    position: relative;
+    width: 200px;
+  }
+  
+  .custom-select {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .custom-select__trigger {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  .custom-select__trigger:after {
+    content: '\25BC';
+    position: absolute;
+    top: calc(50% - 4px);
+    right: 10px;
+  }
+  
+  .custom-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    background-color: #fff;
+    color: #333;
+    z-index: 2;
+  }
+
+  .custom-options.open {
+    display: block;
+  }
+  
+  .custom-option {
+    display: block;
+    padding: 10px;
+  }
+  
+  .custom-option:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .selected {
+    background-color: #e0e0e0;
+    color: #222;
+  }
+  
