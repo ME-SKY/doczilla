@@ -1,13 +1,11 @@
 body,
+
 html {
     margin: 0;
     padding: 0;
     height: 100%;
 }
 
-/* styles.css */
-
-/* Apply box-sizing to all elements */
 * {
     box-sizing: border-box;
 }
@@ -18,24 +16,24 @@ body {
     color: #ffdfcf;
 }
 
-.first-color { 
-	background: #f8b595; 
-}
-	
-.second-color { 
-	background: #f67280; 
+.first-color {
+    background: #f8b595;
 }
 
-.third-color { 
-	background: #c06c84; 
+.second-color {
+    background: #f67280;
 }
 
-.fourth-color { 
-	background: #6c5b7c; 
+.third-color {
+    background: #c06c84;
+}
+
+.fourth-color {
+    background: #6c5b7c;
 }
 
 .app {
-    background: #6c5b7c; 
+    background: #6c5b7c;
     height: 100vh;
     width: 100vw;
     padding: 4%;
@@ -50,7 +48,6 @@ body {
 .search {
     flex: 1 0 100%;
     height: 60px;
-    /* width: 35%; */
     min-height: 60px;
     display: flex;
     align-items: center;
@@ -77,7 +74,6 @@ body {
 
 .todos {
     flex: 0 0 calc(70% - 13px);
-    /* Set width to 70% of the available width in the row */
 }
 
 .calendar {
@@ -88,17 +84,9 @@ body {
     border-radius: 10px;
     flex: 0 0 calc(30% - 13px);
     row-gap: 14px;
-    /* Set width to 30% of the available width in the row */
 }
 
-/* Additional styling for calendar days */
-.calendar-entity {
-    
-    /* border: 1px solid #ccc; */
-    /* padding: 10px; */
-}
-
-.calendar-entity > .header {
+.calendar-entity>.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -106,16 +94,12 @@ body {
     gap: 10px;
 }
 
-.todos > .header {
+.todos>.header {
     display: flex;
     flex-flow: row;
     justify-content: space-between;
 }
 
-/* .calendar-entity .header > .month-btn, 
-.calendar-entity .header > .year-btn {
-    
-} */
 .month-btn,
 .year-btn {
     box-shadow: 0px 0px 2px 2px rgba(166, 156, 219, 0);
@@ -123,28 +107,23 @@ body {
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-evenly;
-    /* padding: 8px 12px; */
     cursor: pointer;
     border: 0.5px solid #ffc1c1;
     border-radius: 10px;
     background-color: #e29099;
     height: 40px;
     transition: box-shadow 0.7s ease;
-    /* color: #f8b595; */
 }
 
 .month-btn {
-    /* border-right-color: antiquewhite; */
-    /* border-radius: 10px 0 0 10px; */
     width: calc(68% - 5px);
 }
 
-.month-btn:hover, .year-btn:hover {
+.month-btn:hover,
+.year-btn:hover {
     filter: brightness(1.05);
     border: 0.5px solid #cee5a8;
-    /* text-shadow: 1px 1px 2px #731c4d; */
     box-shadow: 0px 0px 5px 2px rgba(209, 155, 201, 0.65);
-    /* background: #b47575; */
 }
 
 .month-btn .selected-month {
@@ -152,23 +131,23 @@ body {
     text-shadow: 0px 0px 5px #731c4d78;
 }
 
-.month-btn:hover .selected-month{
+.month-btn:hover .selected-month {
     text-shadow: 1px 1px 3px #731c4d;
 }
 
 .year-btn {
-    /* border-radius: 0 10px 10px 0; */
     width: calc(32% - 5px);
 }
 
-.set-prev-month, .set-next-month {
+.set-prev-month,
+.set-next-month {
     padding: 0;
     font-weight: bolder;
-    color:  #ffc1c1;
+    color: #ffc1c1;
     cursor: pointer;
-    border: 0.5px solid #ffc1c1;
-    border-radius: 4px;
-    background-color: #e29099;
+    border: 0.5px solid transparent;
+    /* border-radius: 4px; */
+    background-color: transparent;
     width: 24px;
     height: 24px;
     display: flex;
@@ -176,16 +155,71 @@ body {
     justify-content: center;
 }
 
+.set-prev-month {
+    border-radius: 0 4px 4px 0;
+}
+
+.set-next-month {
+    border-radius: 4px 0 0 4px;
+}
+
+.set-prev-month:hover {
+    color:#ffdfcf;
+    border-top: 0.5px solid #ffc1c1;
+    border-right: 0.5px solid #ffc1c1;
+    border-bottom: 0.5px solid #ffc1c1;
+    border-left: transparent;
+}
+
+.set-next-month:hover {
+    color:#ffdfcf;
+    border-top: 0.5px solid #ffc1c1;
+    border-left: 0.5px solid #ffc1c1;
+    border-bottom: 0.5px solid #ffc1c1;
+    border-right: transparent;
+}
+
+
+.select-today-btn, .select-week-btn {
+    box-shadow: 0px 0px 2px 2px rgba(166, 156, 219, 0);
+    padding: 0 6px;
+    color: #ffdfcf;
+    cursor: pointer;
+    border: 0.5px solid #ffc1c1;
+    border-radius: 6px;
+    transition: box-shadow 0.7s ease, text-shadow 0.7s ease;
+    text-shadow: 0px 0px 5px #731c4d78;
+    background-color: #e29099;
+    /* width: 100px; */
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-today-btn:hover, .select-week-btn:hover {
+    filter: brightness(1.05);
+    border: 0.5px solid #cee5a8;
+    box-shadow: 0px 0px 5px 2px rgba(209, 155, 201, 0.65);
+    text-shadow: 1px 1px 3px #731c4d;
+}
+
+.calendar-additional-actions{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .calendar-body {
     width: min-content;
-    /* border: 1px solid #ccc; */
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
 }
 
 .calendar-entity .calendar-body .cell {
-    /* background: ; */
     border: 0.5px solid #ffc1c1;
     border-radius: 4px;
     display: flex;
@@ -196,129 +230,162 @@ body {
     cursor: pointer;
 }
 
+.calendar-entity .calendar-body .cell.empty {
+    pointer-events: none;
+    border: 0.5px solid transparent;
+}
+
+.calendar-entity .calendar-body .cell.selected {
+    color: white;
+    background: #715369ab;
+    text-shadow: 0px 0px 2px #731c4d;
+    filter: brightness(1.2);
+    border: 0.5px solid #cee5a8;
+    box-shadow: 0px 0px 5px 2px rgba(209, 155, 201, 0.65);
+}
+
 .calendar-entity .calendar-body .cell:hover {
     filter: brightness(1.2);
     border: 0.5px solid #cee5a8;
     background: #b47575;
 }
 
-/* .day {
-    padding: 8px;
-    text-align: center;
-    background-color: #fff;
-    cursor: pointer;
-} */
-
 .empty {
     background-color: transparent;
-    border: 0.5px solid #ccc;
-    /* Adjust styling for empty cells if needed */
+    border: 0.5px solid transparent;
+}
+
+.cell.empty:hover {
+    background-color: transparent;
+    border: 0.5px solid #cccccc3b;
 }
 
 
 /* checkbox */
-/* Hide the default checkbox */
 .uncompleted-checkbox input {
     opacity: 0;
     position: absolute;
-  }
-  
-  /* Style for the custom checkbox container */
-  .uncompleted-checkbox {
+}
+
+/* Style for the custom checkbox container */
+.uncompleted-checkbox {
     display: inline-block;
     position: relative;
-    padding-left: 25px; /* Set space for the custom checkbox */
+    padding-left: 25px;
+    /* Set space for the custom checkbox */
     margin-right: 15px;
     cursor: pointer;
-  }
-  
-  /* Style for the checkmark */
-  .uncompleted-checkbox .checkmark {
+}
+
+/* Style for the checkmark */
+.uncompleted-checkbox .checkmark {
+    background: rgb(203 139 166 / 64%);
+    border-radius: 50%;
     position: absolute;
     top: 0;
     left: 0;
     height: 20px;
     width: 20px;
-    background-color: #eee;
-    border: 1px solid #999;
-  }
-  
-  /* Show the checkmark when the checkbox is checked */
-  .uncompleted-checkbox input:checked + .checkmark:after {
-    content: "";
-    position: absolute;
+    border: 0.5px solid #ffc1c1;
+}
+
+/* Show the checkmark when the checkbox is checked */
+.uncompleted-checkbox input:checked+.checkmark:after {
+    content: "✓";
+    position: relative;
     display: block;
-    left: 5px;
-    top: 5px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #000;
-  }
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #ffc1c1;
+    filter: brightness(1.1);
+    background: transparent;
+}
 
 
-  /* custom select  */
+/* custom select  */
 
-  /* Styles for the custom select */
+/* Styles for the custom select */
 /* Styles for the custom select */
 .custom-select-wrapper {
     position: relative;
-    width: 200px;
-  }
-  
-  .custom-select {
+    width: 100%;
+    height: 100%;
+    /* width: 200px; */
+}
+
+.custom-select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: 10px;
     position: relative;
     cursor: pointer;
     user-select: none;
-  }
-  
-  .custom-select__trigger {
-    display: block;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    color: #333;
-  }
-  
-  .custom-select__trigger:after {
-    content: '\25BC';
+}
+
+.custom-select__trigger {
+    font-size: 18px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    text-align: center;
+    background: #e29099;
+    color: #ffdfcf;
+    transition: text-shadow 0.7s ease;
+    text-shadow: 0px 0px 5px #731c4d78;
+}
+
+.custom-select:hover .custom-select__trigger {
+    text-shadow: 1px 1px 3px #731c4d;
+}
+
+.custom-select:hover .custom-select__trigger:after {
+    color:#ffdfcf;
+}
+
+.custom-select__trigger:after {
+    color: #ffc1c1;
+    text-shadow: none;
+    content: '<';
+    transform: rotate(270deg);
     position: absolute;
-    top: calc(50% - 4px);
     right: 10px;
-  }
-  
-  .custom-options {
+    font-weight: bolder;
+}
+
+.custom-options {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    max-height: 200px;
+    max-height: 40px;
     overflow-y: auto;
     border: 1px solid #ccc;
     border-top: none;
     border-radius: 0 0 4px 4px;
-    background-color: #fff;
-    color: #333;
+    background-color: #e29099;
+    color: #ffdfcf;
     z-index: 2;
-  }
+}
 
-  .custom-options.open {
+.custom-options.open {
     display: block;
-  }
-  
-  .custom-option {
+}
+
+.custom-option {
     display: block;
     padding: 10px;
-  }
-  
-  .custom-option:hover {
+}
+
+.custom-option:hover {
     background-color: #f0f0f0;
-  }
-  
-  .selected {
+}
+
+.custom-select .selected {
     background-color: #e0e0e0;
     color: #222;
-  }
-  
+}

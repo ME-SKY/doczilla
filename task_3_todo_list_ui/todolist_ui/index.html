@@ -26,21 +26,20 @@
                     </div>
                     
                     <div class="year-btn">
-                        <select name="year" id="selected-year">
-                        </select>
+                        <div class="custom-select-wrapper " id="select-year">
+                            <div class="custom-select">
+                              <div class="custom-select__trigger" class="selected-year" data-value="0" >What year...?</div>
+                              <div class="custom-options">
+                                <!-- <span class="custom-option selected" data-value="1">Option 1</span>
+                                <span class="custom-option" data-value="2">Option 2</span>
+                                <span class="custom-option" data-value="option3">Option 3</span> -->
+                              </div>
+                            </div>
+                          </div>
                     </div>
                 </div>
 
-                <div class="custom-select-wrapper">
-                    <div class="custom-select">
-                      <div class="custom-select__trigger">Option 1</div>
-                      <div class="custom-options">
-                        <span class="custom-option selected" data-value="option1">Option 1</span>
-                        <span class="custom-option" data-value="option2">Option 2</span>
-                        <span class="custom-option" data-value="option3">Option 3</span>
-                      </div>
-                    </div>
-                  </div>
+                
                   
 
                 <div class="calendar-body">
@@ -50,13 +49,13 @@
             </div>
 
             <div class="calendar-additional-actions">
-                <button>Today</button>
-                <button>For Week</button>
+                <button class="select-today-btn">Today</button>
+                <button class="select-week-btn">For Week</button>
 
                 <label class="uncompleted-checkbox">
                     <input type="checkbox">
                     <span class="checkmark"></span>
-                    Checkbox Label
+                    Uncompleted
                 </label>
             </div>
         </div>
