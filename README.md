@@ -34,7 +34,7 @@ A user-friendly interface for managing daily tasks. Features include adding new 
 
 ## Build
 1. Ensure you have `python` installed on your system.
-2. Navigate to the `todolist_ui` directory and run `python -m SimpleHTTPServer 8000` to serve files.
+2. Navigate to the `task_3_todo_list_ui/todolist_ui` directory and run `python -m SimpleHTTPServer 8000` to serve files.
 
 ## Running Instructions
 1. Open localhost:8000 in browser.
