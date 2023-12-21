@@ -12,8 +12,10 @@
 <body>
     <div class="app">
         <div class="search">
-            <!-- Content for search -->
-            Search
+            <div class="search-input" >
+                <input type="text" placeholder="Search by name" id="search">
+                <ul id="suggestions" class="suggestions"></ul>
+            </div>
         </div>
         <div class="calendar">
             <div class="calendar-entity" id="calendar">
@@ -53,7 +55,7 @@
                 <button class="select-week-btn">For Week</button>
 
                 <label class="uncompleted-checkbox">
-                    <input type="checkbox">
+                    <input type="checkbox" id="uncompleted-checkbox">
                     <span class="checkmark"></span>
                     Uncompleted
                 </label>
@@ -65,20 +67,18 @@
 
                 </div>
                 <div class="sorting">
-
+                    <button class="sorting-btn">Sort</button>
                 </div>
             </div>
             <div class="todos-list">
                 
-                <ul>
+                <ul id="todo-list">
                     There are no tasks!
                 </ul>
             </div>
         </div>
 
-        <div class="modal">
-            <!-- Content for modal -->
-            Modal
+        <div class="modal" id="modal">
         </div>
     </div>
 </body>
