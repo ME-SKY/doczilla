@@ -24,8 +24,7 @@ import org.json.JSONObject;
 enum HttpMethod {
     GET,
     POST,
-    DELETE,
-    // Add other HTTP methods as needed
+    DELETE
 }
 
 public class App {
@@ -69,42 +68,6 @@ public class App {
                 exchange.close();
             }
         }
-
-        // private String getDataFromDatabase() {
-        // StringBuilder data = new StringBuilder();
-        // Class.forName("org.postgresql.Driver");
-        // try (
-
-        // Connection connection =
-        // DriverManager.getConnection("jdbc:postgresql://localhost:5432/students",
-        // "postgres", "ry6re763fe7fe87y")) {
-        // PreparedStatement preparedStatement = connection.prepareStatement("SELECT *
-        // FROM students");
-        // ResultSet resultSet = preparedStatement.executeQuery();
-
-        // while (resultSet.next()) {
-        // // Assuming 'name' is a column in your 'students' table
-        // int studentId = resultSet.getInt("id");
-        // String name = resultSet.getString("name");
-        // String secondName = resultSet.getString("second_name");
-        // String surname = resultSet.getString("surname");
-        // Date dateOfBirth = resultSet.getDate("date_of_birth");
-        // String groupName = resultSet.getString("group_name");
-        // // Append the retrieved data to the response
-        // data.append("id: ").append(studentId)
-        // .append(", name: ").append(name)
-        // .append(", second_name: ").append(secondName)
-        // .append(", surname: ").append(surname)
-        // .append(", date_of_birth: ").append(dateOfBirth)
-        // .append(", group_name: ").append(groupName)
-        // .append("\n");
-        // }
-        // } catch (SQLException e) {
-        // e.printStackTrace();
-        // }
-
-        // return data.toString();
-        // }
     }
 
     static class StudentsHandler implements HttpHandler {
@@ -115,25 +78,18 @@ public class App {
                 BufferedReader br = new BufferedReader(isr);
                 StringBuilder payload = new StringBuilder();
                 String line;
-                
+
                 while ((line = br.readLine()) != null) {
                     payload.append(line);
                 }
 
-                System.out.println("before creatin student data " + payload.toString());
-
                 JSONObject jsonUserObject = new JSONObject(payload.toString());
-
-                System.out.println("jsonUserObject" + jsonUserObject);
 
                 String name = jsonUserObject.getString("name");
                 String secondName = jsonUserObject.getString("second_name");
                 String surname = jsonUserObject.getString("surname");
                 String dateOfBirth = jsonUserObject.getString("date_of_birth");
                 String groupName = jsonUserObject.getString("group_name");
-
-
-                System.out.println("before db creatin user" + name + secondName + surname + dateOfBirth + groupName);
 
                 try {
                     boolean success = createStudent(name, secondName, surname, dateOfBirth, groupName);
@@ -145,17 +101,14 @@ public class App {
                     e.printStackTrace();
                     return;
                 }
-                
-
             } else if (exchange.getRequestMethod().equalsIgnoreCase(HttpMethod.DELETE.name())) {
-                
                 String idString = exchange.getRequestURI().getPath().replace("/students/", "");
-                System.out.println("studentId removing - " + idString);
                 int id = Integer.parseInt(idString);
                 boolean success = deleteStudent(id);
-                
+
                 JSONObject resObj = new JSONObject();
                 resObj.put("ok", success);
+
                 sendJsonResponse(exchange, resObj);
             } else if (exchange.getRequestMethod().equalsIgnoreCase(HttpMethod.GET.name())) {
                 JSONArray response = getStudents();
@@ -165,31 +118,19 @@ public class App {
 
         private boolean createStudent(String name, String secondName, String surname, String dateOfBirth,
                 String groupName) {
-
-                    System.out.println("createStudent 1");
-            // Perform database insertion logic here using JDBC
             try {
-                System.out.println("createStudent 2");
-                // Class.forName("org.postgresql.Driver");
                 Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/students",
                         "postgres", "ry6re763fe7fe87y");
-                        System.out.println("createStudent 2");
                 PreparedStatement preparedStatement = connection.prepareStatement(
                         "INSERT INTO students (name, second_name, surname, date_of_birth, group_name) VALUES (?, ?, ?, ?, ?)");
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, secondName);
                 preparedStatement.setString(3, surname);
-
-                // java.util.Date birthDayUtilDate = new
-                // SimpleDateFormat("yyyy-MM-dd").parse(dateOfBirth);
-                System.out.println("createStudent 3");
                 java.sql.Date birthDaySqlDate = java.sql.Date.valueOf(dateOfBirth);
                 preparedStatement.setDate(4, birthDaySqlDate);
                 preparedStatement.setString(5, groupName);
 
-                System.out.println("preparedStatement: " + preparedStatement);
                 int rowsAffected = preparedStatement.executeUpdate();
-                System.out.println("rows affected?: " + rowsAffected);
                 return rowsAffected > 0;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -199,11 +140,11 @@ public class App {
 
         private boolean deleteStudent(int studentId) {
             try {
-                // Class.forName("org.postgresql.Driver");
                 Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/students",
                         "postgres", "ry6re763fe7fe87y");
                 PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM students WHERE id = ?");
                 preparedStatement.setInt(1, studentId);
+                
                 int rowsAffected = preparedStatement.executeUpdate();
                 return rowsAffected > 0;
             } catch (SQLException e) {
@@ -214,13 +155,13 @@ public class App {
 
         private JSONArray getStudents() {
             JSONArray studentsArray = new JSONArray();
-        
+
             try {
                 Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/students",
                         "postgres", "ry6re763fe7fe87y");
                 PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM students");
                 ResultSet resultSet = preparedStatement.executeQuery();
-        
+
                 while (resultSet.next()) {
                     int studentId = resultSet.getInt("id");
                     String name = resultSet.getString("name");
@@ -228,7 +169,7 @@ public class App {
                     String surname = resultSet.getString("surname");
                     Date dateOfBirth = resultSet.getDate("date_of_birth");
                     String groupName = resultSet.getString("group_name");
-        
+
                     // Create a JSON object for each student
                     JSONObject studentObject = new JSONObject();
                     studentObject.put("id", studentId);
@@ -237,15 +178,14 @@ public class App {
                     studentObject.put("surname", surname);
                     studentObject.put("date_of_birth", dateOfBirth.toString()); // Convert Date to string
                     studentObject.put("group_name", groupName);
-        
+
                     // Add the student object to the array
                     studentsArray.put(studentObject);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        
-            // Return the JSON array directly
+            
             return studentsArray;
         }
     }
@@ -259,7 +199,7 @@ public class App {
 
     private static void sendJsonResponse(HttpExchange exchange, Object responseObject) throws IOException {
         exchange.getResponseHeaders().set("Content-Type", "application/json");
-    
+
         String response;
         if (responseObject instanceof JSONObject) {
             response = ((JSONObject) responseObject).toString();
@@ -268,7 +208,7 @@ public class App {
         } else {
             response = "Invalid response format"; // Handle invalid response type
         }
-    
+
         exchange.sendResponseHeaders(200, response.getBytes().length);
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());

@@ -93,8 +93,6 @@ fun topologicalSort(dependencyGraph: HashMap<File, FileDependency>): List<File> 
     return result.sorted()
 }
 
-
-
 fun concatenateFiles(sortedFiles: List<File>, dependencyGraph: HashMap<File, FileDependency>, rootPath: File) {
     val outputFile = File("output.txt")
     val writer = try {
@@ -106,8 +104,6 @@ fun concatenateFiles(sortedFiles: List<File>, dependencyGraph: HashMap<File, Fil
     for (file in sortedFiles) {
         val fileDependency = dependencyGraph[file]
         try {
-            // val filePath = file.relativeTo(rootPath).path // Get the relative path
-            // writer.write("$filePath\n")
             writer.write(fileDependency?.content ?: "")
             writer.write("\n\n")
         } catch (e: Exception) {
@@ -152,10 +148,7 @@ fun createDependencyGraph(rootPath: File, dependencyGraph: HashMap<File, FileDep
     }
 
     traverseDirectory(rootPath, mutableListOf())
-    println("Created file with dependency graph structure: dependency_graph.txt")
 }
-
-
 
 fun main() {
     val rootPath = File("root_directory")

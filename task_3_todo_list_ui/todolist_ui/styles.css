@@ -1,5 +1,4 @@
 body,
-
 html {
     margin: 0;
     padding: 0;
@@ -53,9 +52,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    /* background-color: #f0f0f0; */
-    /* border: 1px solid #ccc; */
 }
 
 .search-input {
@@ -73,13 +69,8 @@ body {
     position: absolute;
     width: 40%;
     height: 40%;
-    /* backdrop-filter: blur(3px) brightness(0.8) sepia(0.7); */
-    /* align-items: center; */
-    /* justify-content: center; */
     z-index: 3;
     border-radius: 5px;
-
-    /* Additional styles as needed for modal */
 }
 
 #todo-list {
@@ -87,9 +78,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     align-items: flex-start;
-    /* justify-content: flex-start; */
     gap: 26px;
-    /* align-content: flex-start; */
 }
 
 #todo-list li.todo-li-item {
@@ -120,11 +109,7 @@ body {
     left: 4px;
     top: 4px;
     font-size: 16px;
-    /* text-shadow: 0px 1px 3px black; */
-    
 }
-
-
 
 #search {
     width: 100%;
@@ -139,12 +124,10 @@ body {
     box-shadow: 0px 0px 2px 2px rgb(167 156 219);
     background: #c06c84;
     color: #ffdfcf;
-    /* background-color: #ecafb5;; */
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input#search:focus {
-    /* border-color: #f67280; */
     box-shadow: 0 0 8px rgba(246, 114, 128, 0.6);
     outline: none;
 }
@@ -160,7 +143,6 @@ input#search::placeholder {
     flex-flow: column nowrap;
     gap: 16px;
     padding: 14px;
-    /* display: none; */
     border-radius: 8px;
     background: rgba(255, 228, 196, 0.807);
     position: relative;
@@ -291,7 +273,6 @@ input#search::placeholder {
     color: #ffc1c1;
     cursor: pointer;
     border: 0.5px solid transparent;
-    /* border-radius: 4px; */
     background-color: transparent;
     width: 24px;
     height: 24px;
@@ -336,7 +317,6 @@ input#search::placeholder {
     transition: box-shadow 0.7s ease, text-shadow 0.7s ease;
     text-shadow: 0px 0px 5px #731c4d78;
     background-color: #e29099;
-    /* width: 100px; */
     height: 26px;
     display: flex;
     align-items: center;
@@ -415,17 +395,14 @@ input#search::placeholder {
     position: absolute;
 }
 
-/* Style for the custom checkbox container */
 .uncompleted-checkbox {
     display: inline-block;
     position: relative;
     padding-left: 25px;
-    /* Set space for the custom checkbox */
     margin-right: 15px;
     cursor: pointer;
 }
 
-/* Style for the checkmark */
 .uncompleted-checkbox .checkmark {
     background: rgb(203 139 166 / 64%);
     border-radius: 50%;
@@ -437,7 +414,6 @@ input#search::placeholder {
     border: 0.5px solid #ffc1c1;
 }
 
-/* Show the checkmark when the checkbox is checked */
 .uncompleted-checkbox input:checked+.checkmark:after {
     content: "✓";
     position: relative;
@@ -452,14 +428,10 @@ input#search::placeholder {
 
 
 /* custom select  */
-
-/* Styles for the custom select */
-/* Styles for the custom select */
 .custom-select-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
-    /* width: 200px; */
 }
 
 .custom-select {

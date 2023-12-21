@@ -19,7 +19,7 @@ it will create two files - dependencey_graph.txt and output.txt, output.txt will
 This system allows educational institutions to manage student data efficiently. It offers functionalities to add, update, and delete student records, as well as to generate reports.
 
 ## Building Instructions
-1. Navigate to the `students-app` directory.
+1. Navigate to the `task_2_students/students-app` directory.
 2. Run `mvn clean package assembly:single` to build the project.
 
 ## Running Instructions
@@ -37,6 +37,6 @@ A user-friendly interface for managing daily tasks. Features include adding new 
 2. Navigate to the `todolist_ui` directory and run `python -m SimpleHTTPServer 8000` to serve files.
 
 ## Running Instructions
-1. Open localhost:8000 on your browser.
+1. Open localhost:8000 in browser.
 
 
